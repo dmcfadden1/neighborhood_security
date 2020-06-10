@@ -1,0 +1,26 @@
+{
+  "name": "tag_reader_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "author": "Daric McFadden",
+  "license": "ISC",
+  "dependencies": {
+    "base64-img": "^1.0.3",
+    "body-parser": "~1.13.2",
+    "cors": "^2.7.1",
+    "debug": "~2.2.0",
+    "express": "~4.13.1",
+    "morgan": "~1.6.1",
+    "uniqid": "^1.0.0",
+    "validator": "^4.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10",
+    "supertest": "^1.1.0",
+    "tape": "^4.4.0"
+  }
+}

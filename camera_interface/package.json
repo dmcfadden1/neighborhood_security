@@ -1,0 +1,12 @@
+{
+  "name": "camera_interface",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "author": "Daric McFadden",
+  "license": "ISC",
+  "dependencies": {}
+}
