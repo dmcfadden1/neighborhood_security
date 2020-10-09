@@ -9,9 +9,9 @@ import requests
 
 
 video_feed = cv2.VideoCapture(0)  #'rtsp://admin:admin@192.168.0.176/1'
-license_plate_detector = cv2.CascadeClassifier('haar/car_detector.xml')
+# license_plate_detector = cv2.CascadeClassifier('haar/car_detector.xml')
 # car_detector = cv2.CascadeClassifier('haar/car_detector.xml')
-# pedestrian_detector = cv2.CascadeClassifier('haar/pedestrian_detector.xml')
+pedestrian_detector = cv2.CascadeClassifier('haar/pedestrian_detector.xml')
 # facial_detector = cv2.CascadeClassifier('haar/facial_detector.xml')
 
 def call_aplr_api(b64_jpg):
@@ -42,25 +42,25 @@ while(True):
     else:
         break
 
-    license_plate = license_plate_detector.detectMultiScale(greyscale_frame)
+    # license_plate = license_plate_detector.detectMultiScale(gray, 1.2, 4)
     # cars = car_detector.detectMultiScale(greyscale_frame)
-    # pedestrians = pedestrian_detector.detectMultiScale(greyscale_frame)
+    pedestrians = pedestrian_detector.detectMultiScale(greyscale_frame)
     # faces = facial_detector.detectMultiScale(greyscale_frame)
 
-    for (x,y,w,h) in license_plate:
-        cv2.rectangle(frame, (x, y), (x+w, y+h), (255, 0, 255), 2)
-        retval, buffer = cv2.imencode('.jpg', frame)
-        b64_jpg = base64.b64encode(buffer)
+    # for (x,y,w,h) in license_plate:
+    #     cv2.rectangle(frame, (x, y), (x+w, y+h), (255, 0, 255), 2)
+    #     retval, buffer = cv2.imencode('.jpg', frame)
+    #     b64_jpg = base64.b64encode(buffer)
 
-        thread = Thread(target = call_aplr_api(b64_jpg), args = (10, ))
-        thread.start()
-        thread.join()
+    #     thread = Thread(target = call_aplr_api(b64_jpg), args = (10, ))
+    #     thread.start()
+    #     thread.join()
 
     # for (x,y,w,h) in cars:
     #     cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 0, 255), 2)
 
-    # for (x,y,w,h) in pedestrians:
-    #     cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 255), 2)
+    for (x,y,w,h) in pedestrians:
+        cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 255), 2)
     
     # for (x,y,w,h) in faces:
     #     cv2.rectangle(frame, (x, y), (x+w, y+h), (255, 0, 0), 2)
